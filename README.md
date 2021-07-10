@@ -27,4 +27,13 @@ Each folder name is the username. Within the folder, any post containing sensiti
 
 Folder name is the username to be monitored. 
 File name is username_postID.txt. 
+In the file, each content group has three lines: 
+first line is the comment link and it is be pasted to browser; 
+second line is the comment in JSON format;
+third line is the first violated word in this comment. 
+
+The filtered results should be manually confirmed, since the sensitive words are simply pattern matched. 
+Some mismatches could happen. 
+For example, a comment says "we need free speech!", 
+then this comment will be picked up since this word "speech" contains a violated word "pee".  
 
