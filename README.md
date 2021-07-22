@@ -18,6 +18,11 @@ It contains two txt files: **sensitive_words.txt** and **target_user.txt**.
     + Format: one username one line.
     + All usernames are converted to lower cases since the API cannot recognize some account names with upper cases. 
     
+3. post_id.txt: contains IDs of all the post and comments that have been filtered. 
+   + Format: one ID one line. 
+   + No post content is saved here. This file is used to record filtered post and comment IDs. 
+   + The first step for this filter program is to load this txt file. 
+   
 ### Script
 The main.py file contains all the execution code. 
 
