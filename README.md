@@ -10,7 +10,7 @@ Necessary package: **requests**
 **Data Source ==> Script ==> Output**  
 
 ### Data source:  
-It contains two txt files: **sensitive_words.txt** and **target_user.txt**.   
+It contains three txt files: **sensitive_words.txt**, **target_user.txt**, and **post_id.txt**.   
 1. sensitive_words.txt: contains all the words to filter.
     + Format: one word one line.
     + Special symbols: "#" will be removed from words since "#" is considered for tag. Others will be saved. 
@@ -24,7 +24,19 @@ It contains two txt files: **sensitive_words.txt** and **target_user.txt**.
    + The first step for this filter program is to load this txt file. 
    
 ### Script
-The main.py file contains all the execution code. 
++ The filter_with_DB.py runs with a database required.
+
++ The filter_wo_DB.py runs without a database. 
+   + It records IDs of filtered posts and comments in post_id.txt to avoid 
+duplicate crawling.
+   + Workflow:
+     1. Synchronize history records and avoid duplicate downloading
+      + load files in ./output/, if existing files, then get post and comment IDs
+      + load post_id.txt, get IDs of posts and comments in history
+      + synchronize ID record from output folder and post_id.txt, if missing IDs in output folder, filter them from gettr; 
+        if missing IDs in post_id.txt, add them in post_id.txt.
+     2. Load sensitive words
+     3. Load user IDs and record posts and comments that contain sensitive words. 
 
 ### Output
 The script will generate folders contains users' post with sensitive comments. 
